@@ -11,3 +11,37 @@ GAME RULES:
 
 
 
+var  scores, roundScore, activePlayer, dice;
+
+scores= [0,0];
+roundScore= 0;
+activePlayer= 0;
+dice = Math.floor(Math.random() * 6) + 1;  /*rzut kostka*/
+
+
+//document.querySelector('#current-' + activePlayer).textContent = dice;
+document.querySelector('.dice').style.display= 'none';
+document.getElementById('score-0').textContent= '0';
+document.getElementById('current-0').textContent= '0';
+document.getElementById('score-1').textContent= '0';
+document.getElementById('current-1').textContent= '0';
+
+
+document.querySelector('.btn-roll').addEventListener('click', function(){
+   var dice = Math.floor(Math.random() * 6) + 1; 
+   var diceDOM = document.querySelector('.dice'); /**zdjecie kostki */
+   diceDOM.style.display= ' block';
+   diceDOM.src= 'dice-' + dice + '.jpg'; /**zmiana rysuynku */
+
+   if (dice !== 1){
+//Add score
+roundScore += dice;
+//displaY in HTML
+document.querySelector('#current-' + activePlayer).textContent = roundScore;
+
+   }else{
+//Next player 0 bo 1 to 0 a 2 to 1
+activePlayer === 0 ? activePlayer=1 : activePlayer =0;
+roundScore= 0;
+   }
+})
